@@ -193,13 +193,14 @@
             border-radius: 50%;
             opacity: 0.6;
         }
-        .profile-card .decoration-element {
+        /* These classes are for optional additional decorations within the profile card if needed */
+        /* .profile-card .decoration-element {
             position: absolute;
             font-size: 1.5em;
             opacity: 0.6;
         }
         .profile-card .decoration-element.top-right { top: 20px; right: 20px; color: purple; }
-        .profile-card .decoration-element.bottom-left { bottom: 20px; left: 20px; color: orange; }
+        .profile-card .decoration-element.bottom-left { bottom: 20px; left: 20px; color: orange; } */
 
 
         .hello-box {
@@ -601,4 +602,117 @@
                         <li>Implemented robust API solutions for seamless integration and data management.</li>
                         <li>Managed cloud resources and optimized server configurations for efficiency and security.</li>
                         <li>Contributed to system design and problem-solving for complex technical challenges.</li>
-                    </u
+                    </ul>
+                </div>
+                </div>
+
+            <div class="grid-item software-skills">
+                <h3>Software & Skills</h3>
+                <div class="skills-section">
+                    <h4>Programming Languages</h4>
+                    <div class="skill-grid">
+                        <div class="skill-icon-item">
+                            <img src="https://img.icons8.com/color/48/000000/python.png" alt="Python">
+                            <p>Python</p>
+                        </div>
+                         <div class="skill-icon-item">
+                            <img src="https://img.icons8.com/color/48/000000/javascript--v1.png" alt="JavaScript">
+                            <p>JavaScript</p>
+                        </div>
+                        </div>
+
+                    <h4>Backend Technologies</h4>
+                    <div class="skill-grid">
+                         <div class="skill-icon-item">
+                            <img src="https://img.icons8.com/color/48/000000/nodejs.png" alt="Node.js">
+                            <p>Node.js</p>
+                        </div>
+                         <div class="skill-icon-item">
+                            <img src="https://img.icons8.com/external-soft-fill-juicy-fish/48/000000/external-api-cryptocurrency-soft-fill-soft-fill-juicy-fish.png" alt="API">
+                            <p>APIs</p>
+                        </div>
+                        </div>
+
+                    <h4>Cloud & Infrastructure</h4>
+                    <div class="skill-grid">
+                        <div class="skill-icon-item">
+                            <img src="https://img.icons8.com/fluency/48/000000/cloud.png" alt="Cloud Engineering">
+                            <p>Cloud Eng.</p>
+                        </div>
+                        <div class="skill-icon-item">
+                            <img src="https://img.icons8.com/color/48/000000/linux.png" alt="Linux">
+                            <p>Linux</p>
+                        </div>
+                        <div class="skill-icon-item">
+                            <img src="https://img.icons8.com/color/48/000000/docker.png" alt="Docker">
+                            <p>Docker</p>
+                        </div>
+                        </div>
+
+                    <h4>Tools & Others</h4>
+                    <div class="skill-grid">
+                        <div class="skill-icon-item">
+                            <img src="https://img.icons8.com/color/48/000000/git.png" alt="Git">
+                            <p>Git</p>
+                        </div>
+                        <div class="skill-icon-item">
+                            <img src="https://img.icons8.com/color/48/000000/database.png" alt="Databases">
+                            <p>Databases</p>
+                        </div>
+                        </div>
+
+                </div>
+
+                <h3>Personal</h3>
+                <div class="personal-tags">
+                    <span class="tag">Adaptable</span>
+                    <span class="tag">Communication</span>
+                    <span class="tag">Teamwork</span>
+                    <span class="tag">Problem Solver</span>
+                    <span class="tag">Detail-Oriented</span>
+                    <span class="tag">ENFP-A</span>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Function to add a class for animation (e.g., 'fade-in')
+            const animateOnScroll = (entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            };
+
+            // Observer for general sections
+            const observer = new IntersectionObserver(animateOnScroll, {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1 // Adjust as needed
+            });
+
+            // Observe sections for fade-in effect
+            document.querySelectorAll('.intro-section, .main-grid .grid-item').forEach(section => {
+                observer.observe(section);
+            });
+
+            // Specific animation for profile card (if desired)
+            const profileCard = document.querySelector('.profile-card');
+            if (profileCard) {
+                // Example of adding a class after a delay for a subtle animation
+                setTimeout(() => {
+                    profileCard.style.opacity = 1;
+                    profileCard.style.transform = 'scale(1)';
+                    profileCard.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+                }, 300); // Small delay
+                profileCard.style.opacity = 0; // Initial hidden state
+                profileCard.style.transform = 'scale(0.95)'; // Slightly scaled down
+            }
+        });
+    </script>
+</body>
+</html>
