@@ -4,708 +4,176 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Davin Maritza - Backend Developer Portfolio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@300;400&display=swap" rel="stylesheet">
-
-    <style>
-        /* --- Global Variables & Basic Reset --- */
-        :root {
-            --primary-color: #007bff;       /* Modern Blue - for accents, buttons */
-            --secondary-color: #343a40;     /* Dark Gray - for navigation, footers */
-            --accent-color: #28a745;        /* Green - for subtle highlights, success */
-            --text-color: #495057;          /* Darker text for readability */
-            --light-bg: #f8f9fa;            /* Light background for sections */
-            --dark-bg: #e9ecef;             /* Slightly darker background for contrast */
-            --white: #ffffff;
-            --border-color: #dee2e6;        /* Light border for subtle separation */
-            --shadow-light: rgba(0, 0, 0, 0.08); /* Light shadow for depth */
-            --shadow-medium: rgba(0, 0, 0, 0.15); /* Medium shadow for interactive elements */
-
-            /* Font Families */
-            --heading-font: 'Montserrat', sans-serif;
-            --body-font: 'Open Sans', sans-serif;
-        }
-
-        *, *::before, *::after {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        html {
-            scroll-behavior: smooth; /* Smooth scroll for anchor links */
-        }
-
-        body {
-            font-family: var(--body-font);
-            line-height: 1.6;
-            color: var(--text-color);
-            background-color: var(--light-bg);
-            -webkit-font-smoothing: antialiased;
-            text-rendering: optimizeLegibility;
-        }
-
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 25px;
-        }
-
-        /* --- Typography --- */
-        h1, h2, h3, h4, h5, h6 {
-            font-family: var(--heading-font);
-            color: var(--secondary-color);
-            margin-bottom: 1rem;
-            font-weight: 700;
-        }
-
-        h1 {
-            font-size: 3.5em;
-            line-height: 1.1;
-        }
-
-        h2 {
-            font-size: 2.8em;
-            text-align: center;
-            margin-bottom: 50px;
-            position: relative;
-            padding-bottom: 10px;
-        }
-
-        h2::after {
-            content: '';
-            display: block;
-            width: 80px;
-            height: 4px;
-            background: var(--primary-color);
-            margin: 15px auto 0;
-            border-radius: 2px;
-        }
-
-        h3 {
-            font-size: 1.8em;
-            margin-bottom: 0.8em;
-        }
-
-        p {
-            margin-bottom: 1em;
-        }
-
-        a {
-            color: var(--primary-color);
-            text-decoration: none;
-            transition: color 0.3s ease, transform 0.2s ease;
-        }
-
-        a:hover {
-            color: var(--accent-color);
-            transform: translateY(-1px);
-        }
-
-        /* --- Buttons --- */
-        .btn {
-            display: inline-block;
-            background-color: var(--primary-color);
-            color: var(--white);
-            padding: 12px 30px;
-            border-radius: 5px;
-            text-transform: uppercase;
-            font-weight: bold;
-            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-            border: none;
-            cursor: pointer;
-            font-size: 1.1em;
-            box-shadow: 0 4px 8px var(--shadow-light);
-        }
-
-        .btn:hover {
-            background-color: var(--accent-color);
-            transform: translateY(-3px);
-            box-shadow: 0 6px 12px var(--shadow-medium);
-        }
-
-        .btn-small {
-            padding: 8px 18px;
-            font-size: 0.9em;
-        }
-
-        /* --- Header - Hero Section --- */
-        .hero {
-            background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)),
-                        url('https://images.unsplash.com/photo-1517694712202-14dd9538aa97?ixlib=rb-4.0.3&ixid=M3w1MDcwMnwwfDF8c2VhcmNofDEzfHxjb2Rpbmd8ZW58MHx8fHwxNzE3ODIwOTI5fDA&auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover;
-            color: var(--white);
-            text-align: center;
-            padding: 150px 0;
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 80vh;
-        }
-
-        .hero-title {
-            animation: fadeInDown 1.2s ease-out;
-        }
-
-        .hero-subtitle {
-            font-size: 1.6em;
-            margin-bottom: 40px;
-            animation: fadeInUp 1.2s ease-out 0.3s;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        /* --- Navigation Bar --- */
-        .navbar {
-            background-color: var(--secondary-color);
-            color: var(--white);
-            padding: 18px 0;
-            box-shadow: 0 3px 8px rgba(0,0,0,0.25);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-
-        .nav-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            display: flex;
-            justify-content: center;
-        }
-
-        .nav-list li {
-            margin: 0 25px;
-        }
-
-        .nav-list a {
-            color: var(--white);
-            font-weight: 600;
-            padding: 8px 0;
-            position: relative;
-            font-size: 1.05em;
-            letter-spacing: 0.5px;
-        }
-
-        .nav-list a::after {
-            content: '';
-            display: block;
-            width: 0;
-            height: 3px;
-            background: var(--primary-color);
-            transition: width 0.3s ease;
-            position: absolute;
-            bottom: -8px;
-            left: 0;
-            border-radius: 2px;
-        }
-
-        .nav-list a:hover::after {
-            width: 100%;
-        }
-
-        /* --- Sections --- */
-        .section {
-            padding: 100px 0;
-            border-bottom: 1px solid var(--border-color);
-            transition: all 0.5s ease-out;
-        }
-
-        .section:last-of-type {
-            border-bottom: none;
-        }
-
-        .about-me {
-            background-color: var(--white);
-            text-align: center;
-        }
-
-        .profile-pic {
-            width: 180px;
-            height: 180px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin: 0 auto 40px;
-            display: block;
-            border: 6px solid var(--primary-color);
-            box-shadow: 0 8px 20px var(--shadow-medium);
-            transition: transform 0.3s ease;
-        }
-
-        .profile-pic:hover {
-            transform: scale(1.05);
-        }
-
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 35px;
-            text-align: center;
-        }
-
-        .skill-item {
-            background-color: var(--white);
-            padding: 35px;
-            border-radius: 10px;
-            box-shadow: 0 6px 15px var(--shadow-light);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border-top: 5px solid var(--primary-color);
-        }
-
-        .skill-item:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 10px 25px var(--shadow-medium);
-        }
-
-        .skill-item h3 {
-            color: var(--primary-color);
-            margin-bottom: 10px;
-        }
-
-        .skill-item p {
-            color: var(--dark-gray);
-            font-size: 1.0em;
-        }
-
-
-        .projects {
-            background-color: var(--dark-bg);
-        }
-
-        .project-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 40px;
-        }
-
-        .project-item {
-            background-color: var(--white);
-            border-radius: 10px;
-            box-shadow: 0 8px 20px var(--shadow-light);
-            overflow: hidden;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .project-item:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 12px 30px var(--shadow-medium);
-        }
-
-        .project-item img {
-            width: 100%;
-            height: 280px;
-            object-fit: cover;
-            display: block;
-            transition: transform 0.4s ease;
-        }
-
-        .project-item:hover img {
-            transform: scale(1.08);
-        }
-
-        .project-content {
-            padding: 25px;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .project-item h3 {
-            margin-top: 0;
-            font-size: 1.6em;
-            color: var(--secondary-color);
-        }
-
-        .project-item p {
-            margin-bottom: 20px;
-            color: var(--text-color);
-            flex-grow: 1;
-        }
-
-        .project-item .btn {
-            align-self: flex-start;
-            margin-top: auto;
-        }
-
-
-        .contact {
-            background-color: var(--secondary-color);
-            color: var(--white);
-            text-align: center;
-            padding-bottom: 80px;
-        }
-
-        .contact h2 {
-            color: var(--white);
-        }
-
-        .contact h2::after {
-            background: var(--primary-color);
-        }
-
-        .contact-info p {
-            font-size: 1.15em;
-            margin-bottom: 12px;
-            color: var(--light-bg);
-        }
-
-        .contact-info a {
-            color: var(--primary-color);
-            font-weight: 600;
-        }
-
-        .contact-info a:hover {
-            color: var(--accent-color);
-        }
-
-        .contact-form {
-            max-width: 650px;
-            margin: 40px auto 0;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        .contact-form input,
-        .contact-form textarea {
-            padding: 15px;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            font-size: 1.05em;
-            background-color: var(--white);
-            color: var(--text-color);
-            box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
-        }
-
-        .contact-form input:focus,
-        .contact-form textarea:focus {
-            outline: none;
-            border-color: var(--primary-color);
-            box-shadow: 0 0 0 4px rgba(0, 123, 255, 0.25);
-        }
-
-        .contact-form textarea {
-            resize: vertical;
-            min-height: 120px;
-        }
-
-        .contact-form .btn {
-            align-self: center;
-            width: 100%;
-            max-width: 250px;
-            font-size: 1.2em;
-            padding: 14px 30px;
-        }
-
-        /* --- Footer --- */
-        .footer {
-            background-color: var(--secondary-color);
-            color: var(--light-bg);
-            text-align: center;
-            padding: 25px 0;
-            font-size: 0.95em;
-            border-top: 1px solid rgba(255,255,255,0.1);
-        }
-
-        /* --- Animations (for Hero and Section visibility) --- */
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* --- Responsive Design --- */
-        @media (max-width: 992px) {
-            h1 {
-                font-size: 3em;
-            }
-            h2 {
-                font-size: 2.2em;
-            }
-            .hero {
-                padding: 120px 0;
-            }
-            .hero-subtitle {
-                font-size: 1.4em;
-            }
-            .nav-list li {
-                margin: 0 15px;
-            }
-            .section {
-                padding: 80px 0;
-            }
-            .skills-grid, .project-grid {
-                gap: 25px;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .container {
-                padding: 0 15px;
-            }
-            h1 {
-                font-size: 2.5em;
-            }
-            h2 {
-                font-size: 2em;
-                margin-bottom: 40px;
-            }
-            .hero {
-                padding: 100px 0;
-                min-height: 70vh;
-            }
-            .hero-subtitle {
-                font-size: 1.2em;
-            }
-            .navbar {
-                padding: 12px 0;
-            }
-            .nav-list {
-                flex-direction: column;
-                align-items: center;
-            }
-            .nav-list li {
-                margin: 8px 0;
-            }
-            .nav-list a::after {
-                bottom: -3px;
-            }
-            .section {
-                padding: 60px 0;
-            }
-            .skills-grid {
-                grid-template-columns: 1fr;
-            }
-            .project-grid {
-                grid-template-columns: 1fr;
-            }
-            .skill-item, .project-item {
-                margin-bottom: 20px;
-            }
-            .contact-form {
-                max-width: 100%;
-                padding: 0 15px;
-            }
-            .contact-form .btn {
-                max-width: 200px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            h1 {
-                font-size: 2em;
-            }
-            h2 {
-                font-size: 1.7em;
-            }
-            .hero {
-                padding: 80px 0;
-                min-height: 60vh;
-            }
-            .hero-subtitle {
-                font-size: 1em;
-            }
-            .btn {
-                padding: 10px 20px;
-                font-size: 0.9em;
-            }
-            .profile-pic {
-                width: 150px;
-                height: 150px;
-                margin-bottom: 30px;
-            }
-            .skill-item, .project-item {
-                padding: 25px;
-            }
-            .project-item img {
-                height: 200px;
-            }
-            .project-item h3 {
-                font-size: 1.4em;
-            }
-            .contact-info p {
-                font-size: 1em;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-    <header class="hero">
-        <div class="container">
-            <h1 class="hero-title">Hi, I'm Davin Maritza</h1>
-            <p class="hero-subtitle">A dedicated Backend Developer and Digital Creator, specializing in robust system architecture and cloud engineering.</p>
-            <a href="#projects" class="btn">View My Work</a>
-        </div>
-    </header>
-
-    <nav class="navbar">
-        <ul class="nav-list">
-            <li><a href="#about">About</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-    </nav>
-
-    <main>
-        <section id="about" class="section about-me">
-            <div class="container">
-                <img src="davin1.jpg" alt="Davin Maritza Profile Picture" class="profile-pic">
-                <h2>About Me</h2>
-                <p>I'm Davin Maritza, a passionate backend developer and digital creator with a strong focus on building scalable, efficient, and secure server-side applications. As a **Developer at Queenshost and Nexa**, I've gained hands-on experience in cloud infrastructure, API development, and system optimization.</p>
-                <p>My expertise spans various backend technologies, from server configuration with Pterodactyl to advanced scripting with Python and JavaScript. I thrive on solving complex technical challenges and contributing to impactful projects. I identify as an **ENFP-A | Ambivert**, which means I enjoy both collaborative environments and focused independent work.</p>
-                <p>Beyond coding, I engage with the digital community, sharing insights and connecting with fellow developers and creators on various platforms.</p>
+    <div class="portfolio-container">
+        <header class="main-header">
+            <h1 class="portfolio-title">2025 Portfolio</h1>
+            <p class="portfolio-subtitle">Backend Development • Cloud Engineering • API Solutions</p>
+            <div class="stars-decoration">
+                <span class="star left-top">&#9733;</span>
+                <span class="star right-top">&#9733;</span>
+                <span class="star left-bottom">&#9733;</span>
+                <span class="star right-bottom">&#9733;</span>
             </div>
-        </section>
+        </header>
 
-        <section id="skills" class="section skills">
-            <div class="container">
-                <h2>My Skills</h2>
-                <div class="skills-grid">
-                    <div class="skill-item">
-                        <h3>Programming Languages</h3>
-                        <p>Python, JavaScript</p>
-                    </div>
-                    <div class="skill-item">
-                        <h3>Backend Technologies</h3>
-                        <p>API Development, Node.js (if applicable), Express.js (if applicable)</p>
-                    </div>
-                    <div class="skill-item">
-                        <h3>Cloud & Infrastructure</h3>
-                        <p>Cloud Engineering, DDoS Mitigation, IPTables, Server Management, Pterodactyl Config</p>
-                    </div>
-                    <div class="skill-item">
-                        <h3>Databases (if applicable)</h3>
-                        <p>SQL (e.g., MySQL, PostgreSQL), NoSQL (e.g., MongoDB)</p>
-                    </div>
-                    <div class="skill-item">
-                        <h3>Tools & Version Control</h3>
-                        <p>Git, Docker, Linux, VS Code</p>
-                    </div>
-                    </div>
-            </div>
-        </section>
-
-        <section id="projects" class="section projects">
-            <div class="container">
-                <h2>Featured Projects</h2>
-                <div class="project-grid">
-                    <div class="project-item">
-                        <img src="https://via.placeholder.com/400x250/3498db/ffffff?text=Queenshost+Backend" alt="Queenshost Backend Project">
-                        <div class="project-content">
-                            <h3>Queenshost Backend Infrastructure</h3>
-                            <p>Developed and maintained the robust backend infrastructure for Queenshost, a Minecraft hosting platform, ensuring high performance, scalability, and security for users.</p>
-                            <a href="https://discord.com/servers/queenshost-minecraft-hosting-1093899694121418802" target="_blank" class="btn btn-small">View Discord Server</a>
-                        </div>
-                    </div>
-                    <div class="project-item">
-                        <img src="https://via.placeholder.com/400x250/2c3e50/ffffff?text=Nexa+System+Design" alt="Nexa System Design Project">
-                        <div class="project-content">
-                            <h3>Nexa Backend System Design</h3>
-                            <p>Contributed to the design and implementation of core backend systems for Nexa, focusing on [mention specific backend aspect, e.g., API integrations, data processing pipelines].</p>
-                            <a href="#" target="_blank" class="btn btn-small">Learn More (Optional)</a>
-                        </div>
-                    </div>
-                    <div class="project-item">
-                        <img src="https://via.placeholder.com/400x250/e74c3c/ffffff?text=Custom+API+Development" alt="Custom API Development Project">
-                        <div class="project-content">
-                            <h3>Custom API Development & Integration</h3>
-                            <p>Designed and built various RESTful APIs using [e.g., Node.js, Python Flask] to facilitate data exchange and functionality for diverse applications.</p>
-                            <a href="#" target="_blank" class="btn btn-small">View Code (Optional)</a>
-                        </div>
-                    </div>
-                    </div>
-            </div>
-        </section>
-
-        <section id="contact" class="section contact">
-            <div class="container">
-                <h2>Connect With Me</h2>
-                <p>Interested in collaborating or have a project in mind? Feel free to reach out!</p>
-                <div class="contact-info">
-                    <p>Discord: <a href="https://discordapp.com/users/alfrdvinn" target="_blank">@alfrdvinn</a></p>
-                    <p>Instagram: <a href="https://www.instagram.com/alfrdvinn/" target="_blank">@alfrdvinn</a></p>
-                    <p>Personal Link: <a href="https://guns.lol/alfrdvinn" target="_blank">guns.lol/alfrdvinn</a></p>
-                    </div>
+        <section class="intro-section">
+            <div class="intro-content">
+                <div class="profile-card">
+                    <img src="davin1.jpg" alt="Davin Maritza Profile" class="profile-pic">
+                    <h2 class="profile-name">Davin Maritza</h2>
+                    <p class="profile-title">Backend Developer</p>
                 </div>
-        </section>
-    </main>
 
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2025 Davin Maritza. All Rights Reserved.</p>
-        </div>
-    </footer>
+                <div class="hello-box">
+                    <h3>Hello!</h3>
+                    <p>Hi, my name is Davin Maritza, a backend developer based in Indonesia. I'm passionate about building robust, scalable, and efficient server-side applications and managing cloud infrastructure. My expertise lies in creating seamless digital experiences through well-designed APIs and reliable system architecture.</p>
+                </div>
+
+                <div class="contact-box">
+                    <h4>Contact</h4>
+                    <p><i class="fas fa-at icon"></i> alfrdvinn@example.com (Replace with your actual email)</p>
+                    <p><i class="fab fa-discord icon"></i> <a href="https://discordapp.com/users/alfrdvinn" target="_blank">@alfrdvinn</a></p>
+                    <p><i class="fab fa-instagram icon"></i> <a href="https://www.instagram.com/alfrdvinn/" target="_blank">@alfrdvinn</a></p>
+                    <p><i class="fas fa-link icon"></i> <a href="https://guns.lol/alfrdvinn" target="_blank">guns.lol/alfrdvinn</a></p>
+                    </div>
+            </div>
+        </section>
+
+        <section class="main-grid">
+            <div class="grid-item education">
+                <h3>Education</h3>
+                <div class="edu-item">
+                    <p class="edu-year">20XX - 20XX</p> <p class="edu-degree">Bachelor of Science in Computer Science</p>
+                    <p class="edu-uni">Your University/Institution Name</p>
+                </div>
+                </div>
+
+            <div class="grid-item experience">
+                <h3>Experience</h3>
+                <div class="exp-item">
+                    <p class="exp-year">Mar 2022 - Present</p> <p class="exp-title">Backend Developer</p>
+                    <p class="exp-company">Queenshost & Nexa</p>
+                    <ul class="exp-description">
+                        <li>Developed and maintained scalable backend infrastructure for high-performance hosting platforms.</li>
+                        <li>Implemented robust API solutions for seamless integration and data management.</li>
+                        <li>Managed cloud resources and optimized server configurations for efficiency and security.</li>
+                        <li>Contributed to system design and problem-solving for complex technical challenges.</li>
+                    </ul>
+                </div>
+                </div>
+
+            <div class="grid-item software-skills">
+                <h3>Software & Skills</h3>
+                <div class="skills-section">
+                    <div class="skill-category">
+                        <h4>Programming Languages</h4>
+                        <div class="skill-grid">
+                            <div class="skill-icon-item">
+                                <img src="https://img.icons8.com/color/48/000000/python.png" alt="Python">
+                                <p>Python</p>
+                            </div>
+                             <div class="skill-icon-item">
+                                <img src="https://img.icons8.com/color/48/000000/javascript--v1.png" alt="JavaScript">
+                                <p>JavaScript</p>
+                            </div>
+                            </div>
+                    </div>
+
+                    <div class="skill-category">
+                        <h4>Backend Technologies</h4>
+                        <div class="skill-grid">
+                             <div class="skill-icon-item">
+                                <img src="https://img.icons8.com/color/48/000000/nodejs.png" alt="Node.js">
+                                <p>Node.js</p>
+                            </div>
+                             <div class="skill-icon-item">
+                                <img src="https://img.icons8.com/external-soft-fill-juicy-fish/48/000000/external-api-cryptocurrency-soft-fill-soft-fill-juicy-fish.png" alt="API">
+                                <p>APIs</p>
+                            </div>
+                            </div>
+                    </div>
+
+                    <div class="skill-category">
+                        <h4>Cloud & Infrastructure</h4>
+                        <div class="skill-grid">
+                            <div class="skill-icon-item">
+                                <img src="https://img.icons8.com/fluency/48/000000/cloud.png" alt="Cloud Engineering">
+                                <p>Cloud Eng.</p>
+                            </div>
+                            <div class="skill-icon-item">
+                                <img src="https://img.icons8.com/color/48/000000/linux.png" alt="Linux">
+                                <p>Linux</p>
+                            </div>
+                            <div class="skill-icon-item">
+                                <img src="https://img.icons8.com/color/48/000000/docker.png" alt="Docker">
+                                <p>Docker</p>
+                            </div>
+                            </div>
+                    </div>
+
+                    <div class="skill-category">
+                        <h4>Tools & Others</h4>
+                        <div class="skill-grid">
+                            <div class="skill-icon-item">
+                                <img src="https://img.icons8.com/color/48/000000/git.png" alt="Git">
+                                <p>Git</p>
+                            </div>
+                            <div class="skill-icon-item">
+                                <img src="https://img.icons8.com/color/48/000000/database.png" alt="Databases">
+                                <p>Databases</p>
+                            </div>
+                            </div>
+                    </div>
+
+                </div>
+
+                <h3>Personal</h3>
+                <div class="personal-tags">
+                    <span class="tag">Adaptable</span>
+                    <span class="tag">Communication</span>
+                    <span class="tag">Teamwork</span>
+                    <span class="tag">Problem Solver</span>
+                    <span class="tag">Detail-Oriented</span>
+                    <span class="tag">ENFP-A</span>
+                </div>
+            </div>
+        </section>
+    </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // 1. Smooth scrolling for navigation links
-            document.querySelectorAll('.nav-list a').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault(); // Prevent default anchor click behavior
-
-                    const targetId = this.getAttribute('href'); // Get the href attribute (e.g., "#about")
-                    const targetElement = document.querySelector(targetId); // Find the element by its ID
-
-                    if (targetElement) {
-                        targetElement.scrollIntoView({
-                            behavior: 'smooth' // Enable smooth scrolling
-                        });
-                    }
-                });
-            });
-
-            // 2. Animate sections on scroll using Intersection Observer
-            // This makes sections fade in and slide up when they become visible
-            const sections = document.querySelectorAll('.section'); // Select all elements with class 'section'
-
-            // Options for the Intersection Observer
-            const observerOptions = {
-                root: null, // The viewport is the root
-                rootMargin: '0px', // No margin around the root
-                threshold: 0.1 // When 10% of the section is visible, trigger the callback
-            };
-
-            // Callback function executed when a section enters or exits the viewport
-            const observer = new IntersectionObserver((entries, observer) => {
+            // Function to add a class for animation (e.g., 'fade-in')
+            const animateOnScroll = (entries, observer) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
-                        // If the section is now visible
-                        entry.target.style.opacity = 1;
-                        entry.target.style.transform = 'translateY(0)';
-                        // Remove the initial hidden styles
-                        entry.target.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
-                        observer.unobserve(entry.target); // Stop observing once it has animated
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target);
                     }
                 });
-            }, observerOptions);
+            };
 
-            // Apply initial hidden styles to all sections and observe them
-            sections.forEach(section => {
-                section.style.opacity = 0; // Start with opacity 0 (hidden)
-                section.style.transform = 'translateY(40px)'; // Start slightly below its final position
-                section.style.transition = 'none'; // Disable transition initially to prevent flicker
-                observer.observe(section); // Start observing each section
+            // Observer for general sections
+            const observer = new IntersectionObserver(animateOnScroll, {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1 // Adjust as needed
             });
+
+            // Observe sections for fade-in effect
+            document.querySelectorAll('.intro-section, .main-grid .grid-item').forEach(section => {
+                observer.observe(section);
+            });
+
+            // Specific animation for profile card (if desired)
+            const profileCard = document.querySelector('.profile-card');
+            if (profileCard) {
+                profileCard.classList.add('animate-profile-card');
+            }
         });
     </script>
 </body>
